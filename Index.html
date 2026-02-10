@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guion Presentación PC - Ministerio | Pilar Navarro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #1e5a6e 0%, #028090 100%);
+            padding: 20px;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #1e5a6e;
+            color: white;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+        }
+        
+        .timer-display {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 28px;
+            font-weight: bold;
+            font-family: monospace;
+        }
+        
+        .controls {
+            background: #f5f5f5;
+            padding: 20px;
+            border-bottom: 2px solid #ddd;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .slide-nav {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+        
+        .slide-btn {
+            padding: 8px 12px;
+            border: 2px solid #028090;
+            background: white;
+            color: #028090;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 13px;
+        }
+        
+        .slide-btn:hover {
+            background: #028090;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .slide-btn.active {
+            background: #1e5a6e;
+            color: white;
+            border-color: #1e5a6e;
+        }
+        
+        .timer-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .timer-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .start-btn {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .stop-btn {
+            background: #f44336;
+            color: white;
+        }
+        
+        .reset-btn {
+            background: #ff9800;
+            color: white;
+        }
+        
+        .timer-btn:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .slide-content {
+            display: none;
+        }
+        
+        .slide-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #028090;
+        }
+        
+        .slide-title {
+            font-size: 26px;
+            color: #1e5a6e;
+            font-weight: 700;
+        }
+        
+        .slide-timing {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .tone-indicator {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-style: italic;
+            color: #856404;
+        }
+        
+        .script-text {
+            font-size: 17px;
+            line-height: 1.9;
+            color: #333;
+        }
+        
+        .script-text p {
+            margin-bottom: 15px;
+        }
+        
+        .pause {
+            display: block;
+            text-align: center;
+            color: #f44336;
+            font-weight: bold;
+            margin: 15px 0;
+            padding: 10px;
+            background: #ffebee;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .emphasis {
+            background: linear-gradient(120deg, #02c39a 0%, #00a896 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+        
+        .signal {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        
+        .key-message {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #6a1b9a;
+        }
+        
+        .tip {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .tip strong {
+            color: #2e7d32;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .nav-arrows {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+        
+        .nav-arrow-btn {
+            padding: 12px 24px;
+            background: #028090;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-arrow-btn:hover {
+            background: #1e5a6e;
+            transform: translateX(0);
+        }
+        
+        .nav-arrow-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .total-time {
+            text-align: center;
+            padding: 15px;
+            background: #f5f5f5;
+            border-top: 2px solid #ddd;
+            font-weight: 600;
+            color: #1e5a6e;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .controls, .nav-arrows, .header {
+                display: none;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎤 Guion Presentación - Ministerio de Sanidad</h1>
+            <div class="timer-display" id="timerDisplay">00:00</div>
+        </div>
+        
+        <div class="controls">
+            <div class="slide-nav">
+                <button class="slide-btn active" data-slide="16">S16</button>
+                <button class="slide-btn" data-slide="17">S17</button>
+                <button class="slide-btn" data-slide="18">S18</button>
+                <button class="slide-btn" data-slide="19">S19</button>
+                <button class="slide-btn" data-slide="20">S20</button>
+                <button class="slide-btn" data-slide="21">S21</button>
+                <button class="slide-btn" data-slide="22">S22</button>
+                <button class="slide-btn" data-slide="23">S23</button>
+                <button class="slide-btn" data-slide="24">S24</button>
+                <button class="slide-btn" data-slide="25">S25</button>
+            </div>
+            <div class="timer-controls">
+                <button class="timer-btn start-btn" id="startBtn">▶ Iniciar</button>
+                <button class="timer-btn stop-btn" id="stopBtn">⏸ Pausar</button>
+                <button class="timer-btn reset-btn" id="resetBtn">↻ Reset</button>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- SLIDE 16 -->
+            <div class="slide-content active" data-slide="16">
+                <div class="slide-header">
+                    <div class="slide-title">Slide 16: De los Resultados a las Recomendaciones</div>
+                    <div class="slide-timing">⏱️ 30 seg</div>
+                </div>
+                
+                <div class="tone-indicator">
+                    Tono: Cambio de voz. Más tranquilo después de los verbatims emocionales de Pilar Torres
+                </div>
+                
+                <div class="script-text">
+                    <p>Gracias, Pilar.</p>
+                    
+                    <span class="pause">⏸ PAUSA</span>
+                    
+                    <p>Como habéis visto, los resultados de este estudio nos muestran algo muy claro: <span class="emphasis">el problema no está en la competencia de las enfermeras, sino en el ecosistema donde intentan ejercerla</span>.</p>
+                    
+                    <span class="pause">⏸ PAUSA BREVE</span>
+                    
+                    <p>A partir de aquí, lo que voy a compartir con vosotros <span class="emphasis">son las recomendaciones que derivan directamente de esas barreras y facilitadores</span> que acabáis de escuchar.</p>
+                    
+                    <p>No son ocurrencias nuestras. Son la <span class="emphasis">traducción operativa</span> de lo que las propias profesionales nos han dicho que necesitan para que esto funcione.</p>
+                    
+                    <span class="pause">⏸ PAUSA - Avanzar slide</span>
+                </div>
+            </div>
+            
+            <!-- SLIDE 17 -->
+            <div class="slide-content" data-slide="17">
+                <div class="slide-header">
+                    <div class="slide-title">Slide 17: Decálogo - Vista Resumen (3 Pilares)</div>
+                    <div class="slide-timing">⏱️ 1 min</div>
+                </div>
+                
+                <div class="tone-indicator">
+                    Tono: Estructurado, pedagógico, sin prisa
+                </div>
+                
+                <div class="script-text">
+                    <p>Hemos organizado las recomendaciones en un <span class="emphasis">decálogo de 10 principios</span>, agrupados en <span class="emphasis">tres pilares estratégicos</span>.</p>
+                    
+                    <div class="signal">👉 SEÑALAR PILAR A</div>
+                    
+                    <p>El <span class="emphasis">Pilar A</span> aborda el marco normativo y la gobernanza. Porque si no hay claridad jurídica y liderazgo institucional explícito, esto no arranca.</p>
+                    
+                    <div class="signal">👉 SEÑALAR PILAR B</div>
+                    
+                    <p>El <span class="emphasis">Pilar B</span> se centra en la implantación estructural. Aquí hablamos de integrar la prescripción colaborativa en los sistemas de gestión, en la formación, en las historias clínicas... en el día a día del sistema.</p>
+                    
+                    <div class="signal">👉 SEÑALAR PILAR C</div>
+                    
+                    <p>Y el <span class="emphasis">Pilar C</span> es medición y mejora continua. Porque necesitamos medir <span class="emphasis">uso real</span>, no solo cuántas enfermeras están habilitadas.</p>
+                    
+                    <span class="pause">⏸ PAUSA</span>
+                    
+                    <p>Vamos a verlos en detalle.</p>
+                </div>
+            </div>
+            
+            <!-- SLIDE 18 -->
+            <div class="slide-content" data-slide="18">
+                <div class="slide-header">
+                    <div class="slide-title">Slide 18: Decálogo Detallado (10 Cajas)</div>
+                    <div class="slide-timing">⏱️ 1 min 30 seg</div>
+                </div>
+                
+                <div class="tone-indicator">
+                    Tono: Recorrer con energía pero sin acelerar. NO leer todo, seleccionar 3-4 clave
+                </div>
+                
+                <div class="script-text">
+                    <p>Aquí tenéis los <span class="emphasis">10 principios en detalle</span>.</p>
+                    
+                    <div class="tip">
+                        <strong>⚠️ NO LEER TODO - Seleccionar 3-4:</strong>
+                    </div>
+                    
+                    <p><span class="emphasis">Definición operativa común</span>: eliminar esa ambigüedad de 'no sé si esto es prescripción o colaboración' que escuchábamos en los verbatims.</p>
+                    
+                    <p><span class="emphasis">Seguridad jurídica efectiva</span>: finalizar la adaptación territorial de las Guías IUA del Ministerio. Sabemos que algunas comunidades ya lo han hecho, otras están en proceso. Lo importante es tener protocolos operativos claros y actualizados.</p>
+                    
+                    <div class="signal">👉 SEÑALAR #6</div>
+                    
+                    <p><span class="emphasis">Red de enfermeras mentoras</span>: una referente por distrito, con tiempo protegido, para acompañar en contexto real. Porque, como decían, 'nos sacan a torear sin enseñarnos a coger el capote'.</p>
+                    
+                    <span class="pause">⏸ PAUSA</span>
+                    
+                    <p>Y el <span class="emphasis">número 8</span>, que para nosotros es crítico: <span class="emphasis">medir uso real, no habilitación</span>. Porque tener el título no significa que estés prescribiendo.</p>
+                    
+                    <span class="pause">⏸ PAUSA</span>
+                    
+                    <div class="key-message">
+                        💡 MENSAJE CLAVE: Estos 10 principios no son un listado de buenos deseos. Cada uno responde directamente a una barrera identificada en el estudio.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SLIDE 19 -->
+            <div class="slide-content" data-slide="19">
+                <div class="slide-header">
+                    <div class="slide-title">Slide 19: Fases de Implantación</div>
+                    <div class="slide-timing">⏱️ 50 seg</div>
+                </div>
+                
+                <div class="tone-indicator">
+                    Tono: Pragmático, realista
+                </div>
+                
+                <div class="script-text">
+                    <p>¿Y cómo se lleva esto a la práctica?</p>
+                    
+                    <div class="signal">👉 SEÑALAR TIMELINE</div>
+                    
+                    <p>Proponemos un <span class="emphasis">proceso escalonado en 6 fases</span>, que va desde la preparación institucional hasta la consolidación.</p>
+                    
+                    <div class="tip">
+                        <strong>⚠️ NO DETALLAR TODAS - Seleccionar 2-3:</strong>
+                    </div>
+                    
+                    <p>La <span class="emphasis">fase 1</span> es preparación: constituir el comité técnico, hacer diagnóstico, conseguir el mandato institucional. Sin esto, no hay nada.</p>
+                    
+                    <p>La <span class="emphasis">fase 4</span>, implementación, dura 12 meses. Apertura escalonada, acompañamiento en contexto real, monitorización continua.</p>
+                    
+                    <p>Y la <span class="emphasis">fase 5</span> es permanente: evaluación continua, ajuste de estrategias según datos.</p>
+                    
+                    <span class="pause">⏸ PAUSA</span>
+                    
+                    <div class="key-message">
+                        💡 Lo importante: Cada comunidad autónoma puede adaptar los plazos a su contexto, pero la secuencia lógica se respeta.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SLIDE 20 -->
+            <div class="slide-content" data-slide="20">
+                <div class="slide-header">
+                    <div class="slide-title">Slide 20: Sistema de Indicadores (Simple)</div>
+                    <div class="slide-timing">⏱️ 40 seg</div>
+                </div>
+                
+                <div class="tone-indicator">
+                    Tono: Técnico pero accesible
+                </div>
+                
+                <div class="script-text">
+                    <p>Y necesitamos <span class="emphasis">indicadores</span>. Porque si no medimos, no sabemos si esto está funcionando.</p>
+                    
+                    <div class="signal">👉 SEÑALAR LOS 3 BLOQUES</div>
+                    
+                    <p><span class="emphasis">Estructura</span>: ¿Tenemos las condiciones habilitantes? Formación, protocolos, sistemas informáticos...</p>
+                    
+                    <p><span class="emphasis">Proceso</span>: ¿Se está usando realmente? Cuántas enfermeras prescriben, con qué frecuencia, en qué ámbitos...</p>
+                    
+                    <p><span class="emphasis">Resultado</span>: ¿Qué impacto tiene? Satisfacción profesional, reducción de demoras, seguridad clínica...</p>
+                    
+                    <span class="pause">⏸ PAUSA</span>
+                    
+                    <p>Vamos a ver esto con más detalle.</p>
+                </div>
+            </div>
+            
+            <!-- SLIDE 21 -->
+            <div class="slide-content" data-slide="21">
+                <div class="slide-header">
+                    <div class="slide-title">Slide 21: Sistema de Indicadores (12 Indicadores)</div>
+                    <div class="slide-timing">⏱️ 1 min 15 seg</div>
+                </div>
+                
+                <div class="tone-indicator">
+                    Tono: AQUÍ PUEDES BRILLAR. Es TU fuerte. Confianza técnica
+                </div>
+                
+                <div class="script-text">
+                    <p>Hemos diseñado un <span class="emphasis">sistema de 12 indicadores</span>: 4 de estructura, 4 de proceso, 4 de resultado.</p>
+                    
+                    <div class="signal">👉 SEÑALAR COLUMNA ESTRUCTURA</div>
+                    
+                    <p>En <span class="emphasis">estructura</span>, medimos cosas como: ¿qué porcentaje de comunidades tienen al menos 8 de los 10 protocolos actualizados? Meta: 100% en 2027.</p>
+                    
+                    <div class="signal">👉 SEÑALAR COLUMNA PROCESO</div>
+                    
+                    <p>En <span class="emphasis">proceso</span>, lo crítico es el <span class="emphasis">P1</span>: porcentaje de enfermeras formadas que han hecho al menos una intervención de prescripción colaborativa en los últimos 6 meses. Meta: 50% en 2027.</p>
+                    
+                    <span class="pause">⏸ PAUSA - ENFATIZAR</span>
+                    
+                    <div class="key-message">
+                        💡 FRASE POTENTE: Porque una cosa es estar habilitada y otra muy distinta es estar prescribiendo.
+                    </div>
+                    
+                    <div class="signal">👉 SEÑALAR P4</div>
+                    
+                    <p>Y el <span class="emphasis">P4</span> mide equidad territorial: el coeficiente de variación entre territorios. Queremos que sea menor de 0,30. Porque no puede ser que en un distrito prescriban 250 enfermeras y en el de al lado, 20.</p>
+                    
+                    <div class="signal">👉 SEÑALAR COLUMNA RESULTADO</div>
+                    
+                    <p>Y en <span class="emphasis">resultado</span>: satisfacción profesional, reducción de tiempos de espera, seguridad clínica... Esto tiene que mejorar la vida de las personas.</p>
+                    
+                    <span class="pause">⏸ PAUSA</span>
+                    
+                    <p>Este sistema de indicadores <span class="emphasis">ya está diseñado</span>, listo para implementarse.</p>
+                </div>
+            </div>
+            
+            <!-- SLIDE 22 -->
+            <div class="slide-content" data-slide="22">
+                <div class="slide-header">
+                    <div class="slide-title">Slide 22: Aportación al Grupo Nacional</div>
+                    <div class="slide-timing">⏱️ 1 min 20 seg</div>
+                </div>
+                
+                <div class="tone-indicator">
+                    Tono: Humilde pero firme. Ofreces, no impones
+                </div>
+                
+                <div class="script-text">
+                    <p>¿Qué es lo que <span class="emphasis">podemos aportar</span> desde este estudio al Grupo Nacional?</p>
+                    
+                    <div class="signal">👉 SEÑALAR IZQUIERDA</div>
+                    
+                    <p><span class="emphasis">Evidencia empírica</span> desde la práctica real. Un diagnóstico transferible: el fracaso es organizativo, no competencial.</p>
+                    
+                    <p>Un marco estratégico concreto: el Decálogo con sus 10 ejes y 3 pilares.</p>
+                    
+                    <p>Y un sistema de indicadores para medir adopción efectiva.</p>
+                    
+                    <span class="pause">⏸ PAUSA</span>
+                    
+                    <div class="signal">👉 SEÑALAR DERECHA</div>
+                    
+                    <p>Y lo que <span class="emphasis">proponemos para el Ministerio</span> es que asuma un rol <span class="emphasis">normativo, impulsor y coordinador</span>.</p>
+                    
+                    <span class="pause">⏸ PAUSA</span>
+                    
+                    <p>Acciones clave: definición operativa común para todo el SNS, actualización de las Guías IUA, un cuadro de mando compartido, e impulso a las comunidades para que integren esto en su gestión organizativa.</p>
+                    
+                    <span class="pause">⏸ PAUSA</span>
+                    
+                    <p>No se trata de que el Ministerio haga la implementación. Se trata de que <span class="emphasis">lidere el marco</span> y cada comunidad lo adapte a su realidad.</p>
+                    
+                    <span class="pause">⏸ PAUSA LARGA - CAMBIO DE TONO: más empático y conciliador</span>
+                    
+                    <p>Somos conscientes de que <span class="emphasis">hay preocupaciones en algunos colectivos profesionales</span>. Y las entendemos.</p>
+                    
+                    <p>Por eso los resultados de este estudio son tan importantes: porque muestran que <span class="emphasis">el problema no es una guerra de competencias entre profesionales</span>.</p>
+                    
+                    <span class="pause">⏸ PAUSA - ÉNFASIS</span>
+                    
+                    <div class="key-message">
+                        💡 MENSAJE POLÍTICO CLAVE: El problema es que el sistema no está diseñado para que esto funcione.
+                    </div>
+                    
+                    <span class="pause">⏸ PAUSA</span>
+                    
+                    <p>Y la solución no es enfrentar colectivos. La solución es <span class="emphasis">gobernanza clara, protocolos consensuados, espacios de coordinación clínica donde se construya confianza en el día a día</span>.</p>
+                </div>
+            </div>
+            
+            <!-- SLIDE 23 -->
+            <div class="slide-content" data-slide="23">
+                <div class="slide-header">
+                    <div class="slide-title">Slide 23: Ejemplos de Actuaciones Transferibles</div>
+                    <div class="slide-timing">⏱️ 40 seg</div>
+                </div>
+                
+                <div class="tone-indicator">
+                    Tono: Pragmático, ejemplos concretos
+                </div>
+                
+                <div class="script-text">
+                    <p>Y para que esto no quede en abstracto, aquí tenéis <span class="emphasis">cuatro ejemplos concretos</span> de actuaciones transferibles.</p>
+                    
+                    <div class="signal">👉 SEÑALAR #1</div>
+                    
+                    <p>Finalizar la adaptación de las Guías IUA, con grupos de trabajo paralelos y apoyo metodológico.</p>
+                    
+                    <div class="signal">👉 SEÑALAR #2</div>
+                    
+                    <p>Programa piloto de enfermeras referentes: una red de mentoras con 40% de jornada protegida.</p>
+                    
+                    <div class="signal">👉 SEÑALAR #4</div>
+                    
+                    <p>Actualización tecnológica de la historia clínica electrónica: catálogo actualizado, trazabilidad, cuadro de mandos...</p>
+                    
+                    <span class="pause">⏸ PAUSA</span>
+                    
+                    <div class="key-message">
+                        💡 Son ilustraciones operativas, adaptables a cada contexto autonómico. No recetas únicas.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SLIDE 24 -->
+            <div class="slide-content" data-slide="24">
+                <div class="slide-header">
+                    <div class="slide-title">Slide 24: Factores Críticos de Éxito</div>
+                    <div class="slide-timing">⏱️ 50 seg</div>
+                </div>
+                
+                <div class="tone-indicator">
+                    Tono: Lecciones aprendidas. Generosidad al compartir
+                </div>
+                
+                <div class="script-text">
+                    <p>Y para terminar con las recomendaciones, <span class="emphasis">lo que hemos aprendido</span> sobre qué hace que esto funcione.</p>
+                    
+                    <div class="tip">
+                        <strong>⚠️ SEÑALAR 2-3 FACTORES, NO LOS 6:</strong>
+                    </div>
+                    
+                    <p><span class="emphasis">Mandato institucional explícito</span>: plazos no negociables, responsables nominales con consecuencias por incumplimiento. Sin esto, cada uno va a su ritmo y esto no avanza.</p>
+                    
+                    <p><span class="emphasis">Integración en gestión</span>: objetivos, incentivos, indicadores que reconozcan y visibilicen la práctica. Si no está en el cuadro de mando, no existe.</p>
+                    
+                    <p><span class="emphasis">Evaluación continua</span>: monitorización de indicadores y ajuste de estrategias basado en evidencia. No en buenas intenciones.</p>
+                    
+                    <span class="pause">⏸ PAUSA</span>
+                    
+                    <p>Estos son <span class="emphasis">factores críticos</span> que hemos visto que marcan la diferencia.</p>
+                </div>
+            </div>
+            
+            <!-- SLIDE 25 -->
+            <div class="slide-content" data-slide="25">
+                <div class="slide-header">
+                    <div class="slide-title">Slide 25: Conclusión</div>
+                    <div class="slide-timing">⏱️ 1 min 10 seg</div>
+                </div>
+                
+                <div class="tone-indicator">
+                    Tono: Cierre potente pero cálido. Mensaje político integrador
+                </div>
+                
+                <div class="script-text">
+                    <p>Para concluir.</p>
+                    
+                    <span class="pause">⏸ PAUSA</span>
+                    
+                    <div class="key-message">
+                        💡 MENSAJE TÉCNICO CLAVE: La clave del éxito no está en ampliar competencias. La clave está en diseñar sistemas capaces de implantar esas competencias con seguridad, equidad y sostenibilidad.
+                    </div>
+                    
+                    <span class="pause">⏸ PAUSA LARGA - CAMBIO DE TONO: más cálido, inclusivo</span>
+                    
+                    <p>Y queremos ser muy claros en algo:</p>
+                    
+                    <p><span class="emphasis">Esto no es un modelo contra nadie. Es un modelo para las personas</span>.</p>
+                    
+                    <span class="pause">⏸ PAUSA</span>
+                    
+                    <p>La prescripción colaborativa <span class="emphasis">no quita competencias a ningún colectivo profesional</span>. Lo que hace es optimizar recursos del sistema para dar mejor servicio.</p>
+                    
+                    <p>Por eso hablamos de <span class="emphasis">prescripción colaborativa</span>, no independiente.</p>
+                    
+                    <p>Por eso insistimos en espacios de coordinación clínica, en figuras referentes, en protocolos consensuados.</p>
+                    
+                    <span class="pause">⏸ PAUSA - MIRAR AL PÚBLICO</span>
+                    
+                    <div class="key-message">
+                        💡 CONDICIÓN NO NEGOCIABLE: Esto solo funciona si es multidisciplinar e integrado.
+                    </div>
+                    
+                    <span class="pause">⏸ PAUSA</span>
+                    
+                    <p>Y nosotros apostamos por:</p>
+                    
+                    <p>Trabajo <span class="emphasis">multidisciplinar e integrado</span>.</p>
+                    
+                    <p>Políticas basadas en <span class="emphasis">evidencia científica</span>.</p>
+                    
+                    <p><span class="emphasis">Equidad territorial</span> con estándares compartidos en todo el Sistema Nacional de Salud.</p>
+                    
+                    <p>Y un modelo <span class="emphasis">centrado en la persona</span> y en la sostenibilidad.</p>
+                    
+                    <span class="pause">⏸ PAUSA LARGA - MIRAR AL PÚBLICO</span>
+                    
+                    <p><strong>Muchas gracias.</strong></p>
+                </div>
+            </div>
+            
+            <div class="nav-arrows">
+                <button class="nav-arrow-btn" id="prevBtn">← Anterior</button>
+                <button class="nav-arrow-btn" id="nextBtn">Siguiente →</button>
+            </div>
+        </div>
+        
+        <div class="total-time">
+            ⏱️ Tiempo total estimado: 10 minutos
+        </div>
+    </div>
+    
+    <script>
+        let currentSlide = 16;
+        let timerInterval;
+        let seconds = 0;
+        let isRunning = false;
+        
+        // Timer functions
+        function updateTimerDisplay() {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            document.getElementById('timerDisplay').textContent = 
+                `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+        
+        document.getElementById('startBtn').addEventListener('click', () => {
+            if (!isRunning) {
+                isRunning = true;
+                timerInterval = setInterval(() => {
+                    seconds++;
+                    updateTimerDisplay();
+                }, 1000);
+            }
+        });
+        
+        document.getElementById('stopBtn').addEventListener('click', () => {
+            isRunning = false;
+            clearInterval(timerInterval);
+        });
+        
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            isRunning = false;
+            clearInterval(timerInterval);
+            seconds = 0;
+            updateTimerDisplay();
+        });
+        
+        // Slide navigation
+        function showSlide(slideNum) {
+            document.querySelectorAll('.slide-content').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.slide-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.querySelector(`[data-slide="${slideNum}"].slide-content`).classList.add('active');
+            document.querySelector(`[data-slide="${slideNum}"].slide-btn`).classList.add('active');
+            
+            currentSlide = slideNum;
+            updateNavButtons();
+        }
+        
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentSlide === 16;
+            document.getElementById('nextBtn').disabled = currentSlide === 25;
+        }
+        
+        // Slide button clicks
+        document.querySelectorAll('.slide-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const slideNum = parseInt(btn.dataset.slide);
+                showSlide(slideNum);
+            });
+        });
+        
+        // Arrow navigation
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentSlide > 16) {
+                showSlide(currentSlide - 1);
+            }
+        });
+        
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (currentSlide < 25) {
+                showSlide(currentSlide + 1);
+            }
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && currentSlide > 16) {
+                showSlide(currentSlide - 1);
+            } else if (e.key === 'ArrowRight' && currentSlide < 25) {
+                showSlide(currentSlide + 1);
+            } else if (e.key === ' ') {
+                e.preventDefault();
+                if (isRunning) {
+                    document.getElementById('stopBtn').click();
+                } else {
+                    document.getElementById('startBtn').click();
+                }
+            }
+        });
+        
+        // Initialize
+        updateNavButtons();
+    </script>
+</body>
+</html>
